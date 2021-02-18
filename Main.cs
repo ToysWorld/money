@@ -27,7 +27,14 @@ namespace Money
                 //记录
                 try
                 {
-                    listBox1.Items.Add(index.ToString() + "                " + textBox1.Text + "             " + textBox2.Text + "                 " + textBox3.Text + "                " + (Convert.ToInt32(textBox2.Text) * Convert.ToInt32(textBox3.Text)).ToString());
+                    if (index < 10)
+                    {
+                        listBox1.Items.Add(index.ToString() + "                " + textBox1.Text + "             " + textBox2.Text + "                 " + textBox3.Text + "                " + (Convert.ToInt32(textBox2.Text) * Convert.ToInt32(textBox3.Text)).ToString());
+                    }
+                    else
+                    {
+                        listBox1.Items.Add(index.ToString() + "               " + textBox1.Text + "             " + textBox2.Text + "                 " + textBox3.Text + "                " + (Convert.ToInt32(textBox2.Text) * Convert.ToInt32(textBox3.Text)).ToString());
+                    }
                 }
                 catch
                 {
@@ -66,6 +73,7 @@ namespace Money
         {
             string local = Application.StartupPath;
             StreamWriter sw = new StreamWriter(local + "\\今日销售记录.txt");
+            
             write.Add("序号              品名              单价              数量              总价");
             sw.Write("序号              品名              单价              数量              总价 \n");
             sw.Flush();
@@ -90,6 +98,11 @@ namespace Money
         {
             Vip vip = new Vip();
             vip.Show();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
